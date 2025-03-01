@@ -49,7 +49,19 @@ const TypeWriter = ({ text, className, basic = false, isMobile = false }) => {
 
   return (
     <div className="bottom-margin">
-      <a target="_blank" rel="noopener noreferrer" className={className} href={url ? url : undefined}>{displayedText}</a><br />
+      <code className={className} onClick={() => window.open(url, '_blank')}>{displayedText}</code>
+    </div>
+  );
+}
+
+const ImageAndText = ({ src, alt, text, url }) => {
+  return (
+    <div
+      className='fade-in'
+      onClick={() => window.open(url, '_blank')}
+      style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 140}}>
+      <img className='hover-box' src={src} alt={alt} style={{height: 100, width: 100}} />
+      <code style={{marginTop: 5}}>{text}</code>
     </div>
   );
 }
@@ -71,6 +83,13 @@ function useMobileDetect() {
   return isMobile;
 }
 
+const investedInStartups = [
+  { src: 'https://github.com/user-attachments/assets/5ceecdd5-db5f-4946-ba7f-9191fe9035fa', alt: 'Mercury-Bank', text: 'Mercury', url: 'https://mercury.com/' },
+  { src: 'https://github.com/user-attachments/assets/970eef2e-22c3-4ad9-b325-bdd3278d0f74', alt: 'Alto-Pharmacy', text: 'Alto', url: 'https://alto.com/' },
+  { src: 'https://github.com/user-attachments/assets/dc62a04b-f0fa-4749-89ff-b8b48386bbde', alt: 'Wefunder', text: 'Wefunder', url: 'https://wefunder.com/' },
+  { src: 'https://github.com/user-attachments/assets/890271d1-23d8-4b36-bfd6-6ebbab80bcb5', alt: 'Plenful', text: 'Plenful', url: 'https://plenful.com/' },
+  { src: 'https://github.com/user-attachments/assets/462734b7-139c-4ffd-a811-4bb5d79981ac', alt: 'Fundrise', text: 'Fundrise', url: 'https://fundrise.com/' },
+];
 
 export const App = () => {
   const isMobile = useMobileDetect();
@@ -84,11 +103,22 @@ export const App = () => {
           </div>
         </div>
         <div className="secondary-container">
-          <TypeWriter className="secondary-typing-text" text={github} isMobile={isMobile} />
+          <TypeWriter className="secondary-typing-text hover-text" text={github} isMobile={isMobile} />
           <br/>
-          <TypeWriter className="secondary-typing-text" text={linkedin} isMobile={isMobile} />
+          <TypeWriter className="secondary-typing-text hover-text" text={linkedin} isMobile={isMobile} />
           <br/>
-          <TypeWriter className="secondary-typing-text" text={email} isMobile={isMobile} />
+          <TypeWriter className="secondary-typing-text hover-text" text={email} isMobile={isMobile} />
+          <br/>
+          <br/>
+          <div className="secondary-typing-text fade-in">
+            <code>Sometimes I invest in startups</code>
+          </div>
+          <div className='startup-container'>
+            {investedInStartups.map((startup, index) => (
+              <ImageAndText key={`${index}-${startup.alt}`} src={startup.src} alt={startup.alt} text={startup.text} url={startup.url} />
+            ))}
+          </div>            
+
         </div>
         <div className='footer'>
           <code className='small-text'>
