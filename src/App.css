@@ -142,6 +142,11 @@ a:hover {
   border-style: solid; */
 }
 
+.image-size {
+  width: 100px;
+  height: 100px;
+}
+
 /* For screens smaller than 750px (e.g., tablets and mobile devices) */
 @media (max-width: 750px) {
   .typing-container {
@@ -154,6 +159,12 @@ a:hover {
 
   .startup-container { 
     width: 90%;
+    margin-bottom: 80px;
+  }
+
+  .image-size {
+  width: 70px;
+  height: 70px;
   }
 }
 
@@ -163,11 +174,12 @@ a:hover {
   animation-delay: 3s
 }
 
-.fade-in:nth-child(1) { animation-delay: 3.5s; }  /* First div fades in after 2s */
-.fade-in:nth-child(2) { animation-delay: 4s; } /* Second div after 2.5s */
-.fade-in:nth-child(3) { animation-delay: 4.5s; }  /* Third div after 3s */
-.fade-in:nth-child(4) { animation-delay: 5s; } /* Fourth div after 3.5s */
-.fade-in:nth-child(5) { animation-delay: 5.5s; } /* Fourth div after 3.5s */
+.fade-in:nth-child(1) { animation-delay: 3.5s; }
+.fade-in:nth-child(2) { animation-delay: 4s; }
+.fade-in:nth-child(3) { animation-delay: 4.5s; }
+.fade-in:nth-child(4) { animation-delay: 5s; }
+.fade-in:nth-child(5) { animation-delay: 5.5s; }
+.fade-in:nth-child(6) { animation-delay: 6s; }
 
 @keyframes fadeIn {
   from { opacity: 0; }

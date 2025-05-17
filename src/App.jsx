@@ -59,8 +59,8 @@ const ImageAndText = ({ src, alt, text, url }) => {
     <div
       className='fade-in'
       onClick={() => window.open(url, '_blank')}
-      style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 140}}>
-      <img className='hover-box' src={src} alt={alt} style={{height: 100, width: 100}} />
+      style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 120}}>
+      <img className='hover-box image-size' src={src} alt={alt} />
       <code style={{marginTop: 5}}>{text}</code>
     </div>
   );
@@ -85,10 +85,11 @@ function useMobileDetect() {
 
 const investedInStartups = [
   { src: 'https://github.com/user-attachments/assets/5ceecdd5-db5f-4946-ba7f-9191fe9035fa', alt: 'Mercury-Bank', text: 'Mercury', url: 'https://mercury.com/' },
-  { src: 'https://github.com/user-attachments/assets/970eef2e-22c3-4ad9-b325-bdd3278d0f74', alt: 'Alto-Pharmacy', text: 'Alto', url: 'https://alto.com/' },
+  { src: 'https://github.com/user-attachments/assets/2be17a1e-1107-4b1c-b20d-af5db50dd484', alt: 'Alto-Pharmacy', text: 'Alto', url: 'https://alto.com/' },
   { src: 'https://github.com/user-attachments/assets/dc62a04b-f0fa-4749-89ff-b8b48386bbde', alt: 'Wefunder', text: 'Wefunder', url: 'https://wefunder.com/' },
-  { src: 'https://github.com/user-attachments/assets/890271d1-23d8-4b36-bfd6-6ebbab80bcb5', alt: 'Plenful', text: 'Plenful', url: 'https://plenful.com/' },
+  { src: 'https://github.com/user-attachments/assets/58564903-e6e5-4b5b-9b40-324d6482f802', alt: 'Plenful', text: 'Plenful', url: 'https://plenful.com/' },
   { src: 'https://github.com/user-attachments/assets/462734b7-139c-4ffd-a811-4bb5d79981ac', alt: 'Fundrise', text: 'Fundrise', url: 'https://fundrise.com/' },
+  { src: 'https://github.com/user-attachments/assets/28446410-ac01-41ac-8661-bfa0ce928446', alt: 'Plaid', text: 'Plaid', url: 'https://plaid.com/' },
 ];
 
 export const App = () => {
@@ -113,6 +114,7 @@ export const App = () => {
           <div className="secondary-typing-text fade-in">
             <code>Sometimes I invest in startups</code>
           </div>
+          <br />
           <div className='startup-container'>
             {investedInStartups.map((startup, index) => (
               <ImageAndText key={`${index}-${startup.alt}`} src={startup.src} alt={startup.alt} text={startup.text} url={startup.url} />
