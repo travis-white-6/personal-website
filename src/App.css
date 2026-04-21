@@ -180,6 +180,7 @@ a:hover {
 .fade-in:nth-child(4) { animation-delay: 5s; }
 .fade-in:nth-child(5) { animation-delay: 5.5s; }
 .fade-in:nth-child(6) { animation-delay: 6s; }
+.fade-in:nth-child(7) { animation-delay: 6.5s; }
 
 @keyframes fadeIn {
   from { opacity: 0; }

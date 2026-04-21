@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "travis-white-website",
     "public": "build",
     "ignore": [
       "firebase.json",

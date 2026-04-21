@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import ReactLogo from './react-logo.svg';
 import FirebaseLogo from './firebase-icon-180.png';
@@ -11,10 +11,17 @@ const email = '📧 Contact me@traviswhite.dev';
 
 const speed = 50;
 
-const TypeWriter = ({ text, className, basic = false, isMobile = false }) => {
+interface TypeWriterProps {
+  text: string;
+  className?: string;
+  basic?: boolean;
+  isMobile?: boolean;
+}
+
+const TypeWriter = ({ text, className, basic = false, isMobile = false }: TypeWriterProps) => {
   const [displayedText, setDisplayedText] = useState('');
   const [index, setIndex] = useState(0);
-  const lastWord = text.split(' ').pop();
+  const lastWord = text.split(' ').pop() ?? '';
   const indexLastWordStarts = text.indexOf(lastWord);
   const dontDisplayLinkText = isMobile && index >= indexLastWordStarts;
 
@@ -25,7 +32,7 @@ const TypeWriter = ({ text, className, basic = false, isMobile = false }) => {
         setIndex(index + 1);
       }, speed);
 
-      return () => clearTimeout(timer); // Cleanup timeout on component unmount
+      return () => clearTimeout(timer);
     }
   }, [index, text, displayedText]);
 
@@ -41,10 +48,10 @@ const TypeWriter = ({ text, className, basic = false, isMobile = false }) => {
     }
 
     return (
-      <div className="bottom-margin" style={{flexDirection: 'row'}}>
+      <div className="bottom-margin" style={{ flexDirection: 'row' }}>
         <code>{displayedText}</code>{cursor}
       </div>
-    )
+    );
   }
 
   return (
@@ -52,29 +59,36 @@ const TypeWriter = ({ text, className, basic = false, isMobile = false }) => {
       <code className={className} onClick={() => window.open(url, '_blank')}>{displayedText}</code>
     </div>
   );
+};
+
+interface ImageAndTextProps {
+  src: string;
+  alt: string;
+  text: string;
+  url: string;
 }
 
-const ImageAndText = ({ src, alt, text, url }) => {
+const ImageAndText = ({ src, alt, text, url }: ImageAndTextProps) => {
   return (
     <div
       className='fade-in'
       onClick={() => window.open(url, '_blank')}
-      style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 120}}>
+      style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: 120 }}>
       <img className='hover-box image-size' src={src} alt={alt} />
-      <code style={{marginTop: 5}}>{text}</code>
+      {/* <code style={{ marginTop: 5, fontSize: '10px' }}>{text}</code> */}
     </div>
   );
-}
+};
 
-function useMobileDetect() {
+function useMobileDetect(): boolean {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);  // You can adjust the width breakpoint as needed
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    handleResize();  // Check on initial load
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
@@ -83,13 +97,21 @@ function useMobileDetect() {
   return isMobile;
 }
 
-const investedInStartups = [
+interface Startup {
+  src: string;
+  alt: string;
+  text: string;
+  url: string;
+}
+
+const investedInStartups: Startup[] = [
   { src: 'https://github.com/user-attachments/assets/5ceecdd5-db5f-4946-ba7f-9191fe9035fa', alt: 'Mercury-Bank', text: 'Mercury', url: 'https://mercury.com/' },
   { src: 'https://github.com/user-attachments/assets/2be17a1e-1107-4b1c-b20d-af5db50dd484', alt: 'Alto-Pharmacy', text: 'Alto', url: 'https://alto.com/' },
   { src: 'https://github.com/user-attachments/assets/dc62a04b-f0fa-4749-89ff-b8b48386bbde', alt: 'Wefunder', text: 'Wefunder', url: 'https://wefunder.com/' },
   { src: 'https://github.com/user-attachments/assets/58564903-e6e5-4b5b-9b40-324d6482f802', alt: 'Plenful', text: 'Plenful', url: 'https://plenful.com/' },
   { src: 'https://github.com/user-attachments/assets/462734b7-139c-4ffd-a811-4bb5d79981ac', alt: 'Fundrise', text: 'Fundrise', url: 'https://fundrise.com/' },
   { src: 'https://github.com/user-attachments/assets/28446410-ac01-41ac-8661-bfa0ce928446', alt: 'Plaid', text: 'Plaid', url: 'https://plaid.com/' },
+  { src: 'https://github.com/user-attachments/assets/e3621090-b982-4fc3-8148-a77a3f219ef7', alt: 'Olympian Motors', text: 'Olympian Motors', url: 'https://olympianmotors.com/' },
 ];
 
 export const App = () => {
@@ -119,17 +141,16 @@ export const App = () => {
             {investedInStartups.map((startup, index) => (
               <ImageAndText key={`${index}-${startup.alt}`} src={startup.src} alt={startup.alt} text={startup.text} url={startup.url} />
             ))}
-          </div>            
-
+          </div>
         </div>
         <div className='footer'>
           <code className='small-text'>
-            Built with React <img src={ReactLogo} className="App-logo" alt="react-logo" /> | 
-            Hosted on Firebase <img src={FirebaseLogo} className="Firebase-logo" alt="firebase-logo" /> | 
-            © 2021-2025 Travis White Consulting LLC
+            Built with React <img src={ReactLogo} className="App-logo" alt="react-logo" /> |
+            Hosted on Firebase <img src={FirebaseLogo} className="Firebase-logo" alt="firebase-logo" /> |
+            © 2026 Travis White Consulting LLC
           </code>
         </div>
       </header>
     </div>
   );
-}
+};
